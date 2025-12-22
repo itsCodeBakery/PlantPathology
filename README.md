@@ -10,123 +10,23 @@ Official implementation of the **PlantCLR** framework. This repository provides 
 
 ---
 
-##  Project Structure
+## 🔬 Research Overview & Methodology
 
-```
-Code/
-├── SimCLR_CNNClassifier.py         # Combined CNN model with SimCLR projection + classification head
-├── data_loader.py                  # Data loading and augmentation (ImageFolder-based)
-├── finetune_classifier.py          # Optional separate CNN model for classification only
-├── generate_tsne.py                # t-SNE visualization of learned embeddings
-├── gradcam.py                      # Grad-CAM visualization for model interpretability
-├── plot_loss_accuracy_curves.py    # Training/validation loss and accuracy plots
-├── plot_multiclass_roc.py          # Multi-class ROC and AUC curve plotting
-├── test.py                         # Model evaluation and metric collection
-├── train_model.py                  # Supervised training loop for classification
-├── utils.py                        # Seed setting, accuracy calculation, and helpers
-```
+[cite_start]The **PlantCLR** framework addresses two critical bottlenecks in plant pathology: the high cost of expert data annotation and the poor generalization of models from lab-controlled environments to noisy, real-world fields[cite: 405, 406].
 
----
+### 🛠 The Two-Stage Learning Pipeline
+[cite_start]Our methodology decouples representation learning from classification to ensure the model captures intrinsic biological features rather than background noise[cite: 497, 532].
 
-##  Model Overview
+1. [cite_start]**Self-Supervised Pretraining (SimCLR-style):** - Uses a **ConvNeXt-Tiny** backbone as a feature encoder ($f_e$)[cite: 563].
+   - [cite_start]Employs a stochastic augmentation strategy ($T$) to generate positive pairs from the same image[cite: 544, 558].
+   - [cite_start]**Loss Function:** We utilize the **Normalized Temperature-scaled Cross-Entropy (NT-Xent)** loss[cite: 110].
+   
+   $$\mathcal{L}_{i,j} = -\log \frac{\exp(s_{i,j}/\tau)}{\sum_{k=1}^{2N} \mathbb{1}_{[k \neq i]} \exp(s_{i,k}/\tau)}$$
+   [cite_start]*where $s_{i,j}$ is the cosine similarity between projected embeddings $z_i$ and $z_j$[cite: 581, 586].*
 
-`SimCLR_CNNClassifier.py` defines a unified architecture:
-- `mode='pretrain'`: Enables **SimCLR** contrastive learning using a projection head.
-- `mode='classification'`: Switches to a **fully supervised classification head**.
-
-Use `.set_mode('pretrain')` and `.set_mode('classification')` as needed.
-
-<p align="center">
-  <img src="https://github.com/ItsCodeBakery/PlantPathalogy/raw/main/Plots/CLR_Dia.png" alt="SimCLR CNN Classifier Diagram" width="700"/>
-</p>
+2. **Supervised Fine-Tuning:**
+   - [cite_start]The projection head is discarded, and a lightweight linear classifier ($h_{\psi}$) is attached to the frozen or unfrozen encoder[cite: 592, 594].
+   - [cite_start]Fine-tuned on labeled subsets using **Cross-Entropy Loss with Label Smoothing** to prevent overconfidence and improve robustness[cite: 601, 603].
 
 
 ---
-
-##  Workflow
-
-###  1. Setup
-
-```bash
-pip install -r requirements.txt
-```
-
-###  2. Data Format
-
-Organize your dataset like this:
-```
-/data/
-  ├── train/
-  │     ├── class1/
-  │     ├── class2/
-  └── test/
-        ├── class1/
-        ├── class2/
-```
-
-###  3. Training
-
-
-# Supervised fine-tuning
-python train_model.py
-
-
-###  4. Evaluation
-
-python test.py
-
-This will:
-- Print classification report
-- Save confusion matrix
-- Save ROC-AUC plots
-- Save t-SNE plot
-
-### 📊 Output Visualizations
-
-#### ✅ Confusion Matrix
-<p align="center">
-  <img src="https://github.com/ItsCodeBakery/PlantPathalogy/raw/main/Plots/PL_CS.png" alt="Confusion Matrix" width="600"/>
-</p>
-
-#### 🌀 t-SNE Visualization
-<p align="center">
-  <img src="https://github.com/ItsCodeBakery/PlantPathalogy/raw/main/Plots/PL_tSNE.png" alt="t-SNE Plot" width="600"/>
-</p>
-
-#### 📈 Accuracy & Loss Curve
-<p align="center">
-  <img src="https://github.com/ItsCodeBakery/PlantPathalogy/raw/main/Plots/loss_accuracy_curve.png" alt="Training and Validation Curve" width="600"/>
-</p>
-
-#### 🔍 Grad-CAM Visualization
-<p align="center">
-  <img src="https://github.com/ItsCodeBakery/PlantPathalogy/blob/main/Plots/gcPlantVillage%20(1).png" alt="Grad-CAM Attention Map" width="600"/>
-</p>
-
-
----
-
-##  Visualization Tools
-
-| Module | Description |
-|--------|-------------|
-| `plot_loss_accuracy_curves.py` | Dual-axis plot of loss and accuracy |
-| `plot_multiclass_roc.py`      | ROC-AUC curve for each class and macro average |
-| `generate_tsne.py`            | t-SNE of final embeddings |
-| `gradcam.py`                  | Grad-CAM attention visualization on test images |
-| `utils.py`                    | Utility functions (seed, accuracy, etc.) |
-
----
-
-##  Key Features
-
--  Self-supervised learning via **SimCLR projection head**
--  Custom CNN architecture
--  Classification with full visualization suite
--  Modular design for ease of extension
--  Plots are saved in `plots/` (ensure the directory exists)
--  Feel free to contact me if you face any problem in running the code. 
-
----
-
-
