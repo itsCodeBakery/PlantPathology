@@ -1,0 +1,49 @@
+cff-version: 1.2.0
+message: "If you use this repository, please cite the published PlantCLR article."
+title: "PlantCLR: Contrastive Self-Supervised Pretraining for Generalizable Plant Disease Detection"
+type: software
+authors:
+  - family-names: Shah
+    given-names: Syed Shayan Ali
+  - family-names: Saeed
+    given-names: Faisal
+  - family-names: Raza
+    given-names: Muhammad Umair
+  - family-names: Rehman
+    given-names: Abdul
+  - family-names: Shaheryar
+    given-names: Muhammad
+  - family-names: Kim
+    given-names: Il-Min
+  - family-names: Yun
+    given-names: Sangseok
+  - family-names: Kang
+    given-names: Jae-Mo
+repository-code: "https://github.com/itsCodeBakery/PlantPathology"
+url: "https://doi.org/10.1038/s41598-026-45684-x"
+license: MIT
+preferred-citation:
+  type: article
+  title: "PlantCLR: contrastive self-supervised pretraining for generalizable plant disease detection"
+  authors:
+    - family-names: Shah
+      given-names: Syed Shayan Ali
+    - family-names: Saeed
+      given-names: Faisal
+    - family-names: Raza
+      given-names: Muhammad Umair
+    - family-names: Rehman
+      given-names: Abdul
+    - family-names: Shaheryar
+      given-names: Muhammad
+    - family-names: Kim
+      given-names: Il-Min
+    - family-names: Yun
+      given-names: Sangseok
+    - family-names: Kang
+      given-names: Jae-Mo
+  journal: Scientific Reports
+  volume: 16
+  year: 2026
+  doi: "10.1038/s41598-026-45684-x"
+  url: "https://doi.org/10.1038/s41598-026-45684-x"
