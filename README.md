@@ -59,17 +59,7 @@ Grad-CAM maps are interpretability aids. They do not constitute lesion annotatio
   <img src="Plots/gcPlantVillage%20(1).png" alt="PlantCLR Grad-CAM examples on PlantVillage" width="760">
 </p>
 
-## Repository and Reproducibility Status
 
-This repository contains materials associated with the PlantCLR study. The repository is currently being reorganized so that executable entry points, dependency versions, dataset preparation instructions and experiment configurations can be verified against the final published work.
-
-Until that verification is complete:
-
-- use the final *Scientific Reports* article as the authoritative source for the method and results;
-- do not interpret preliminary files or outputs as independently reproduced benchmarks;
-- do not assume that commands or paths from earlier README versions remain valid.
-
-Datasets, private credentials and large training artifacts should not be committed to this repository. Future reproducibility documentation will identify the exact environment, data preparation procedure, random seeds, training entry points and evaluation commands used for the released implementation.
 
 ## Authors
 
