@@ -1,0 +1,76 @@
+# Python bytecode and caches
+__pycache__/
+*.py[cod]
+*$py.class
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.ipynb_checkpoints/
+
+# Virtual environments
+.venv/
+venv/
+env/
+ENV/
+
+# Packaging and build outputs
+build/
+dist/
+*.egg-info/
+.eggs/
+
+# Editors and operating systems
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# Environment variables and credentials
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+kaggle.json
+credentials.json
+secrets.*
+wandb/
+mlruns/
+
+# Datasets and generated data
+data/
+datasets/
+raw_data/
+processed_data/
+cache/
+*.csv
+*.parquet
+*.h5
+*.hdf5
+
+# Model checkpoints and large artifacts
+checkpoints/
+weights/
+artifacts/
+outputs/
+runs/
+logs/
+*.pt
+*.pth
+*.ckpt
+*.onnx
+*.tflite
+*.joblib
+*.pkl
+*.npy
+*.npz
+
+# Generated reports and temporary files
+tmp/
+temp/
+*.log
+*.tmp
+
+# Keep lightweight, curated publication assets tracked
+!Plots/
+!Plots/**
